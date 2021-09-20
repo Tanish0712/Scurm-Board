@@ -1,0 +1,10 @@
+{% extends "Scrum/base.html" %} {% load static %}
+{% block content %}
+<br>
+<h1 align="center">{{ scurmboard.Task_name }}</h1>
+<hr >
+<h4 align="center">Task Description = {{ scurmboard.Task_Description }}</h4>
+<h4 align="center">Task Dead Line = {{ scurmboard.Dead_line }}</h4>
+<h4 align="center">Task Status = {{ scurmboard.status }}</h4>
+<h4 align="center">Task Created by = {{ scurmboard.user }}</h4>
+{% endblock %}

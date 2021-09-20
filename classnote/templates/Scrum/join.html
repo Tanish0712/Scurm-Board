@@ -1,0 +1,30 @@
+{% extends "Scrum/base.html" %} {% load static %}
+{% block content %}
+<br>
+<br>
+
+<img src="{% static 'images/undraw_join_of2w.svg' %}" class="img-fluid"
+        style="height: 250px; width: 100%;">
+<br>
+<br>
+<h2 align="center">Join a Team</h2>
+<form action="." method="post">
+    {% csrf_token %}
+
+    {% if messages %}
+    <ul class="messages">
+        {% for msg in messages %}
+        <p class="text-center">
+        <div class="alert alert-{{msg.level_tag}} text-center" role="alert">
+            {{msg.message}}
+        </div>
+        </p>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h1 align="center">{{form.as_p}}</h1>
+
+    <h2 align="center"><button type="submit" class="btn btn-primary" >Let's Join</button></h2>
+</form>
+{% endblock %}

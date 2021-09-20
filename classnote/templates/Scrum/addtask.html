@@ -1,0 +1,23 @@
+{% extends "Scrum/base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+            <h2>New Task</h2>
+        </div>
+    </div>
+    <form method="post" id="submit_video">
+    {% csrf_token %}
+    {% load widget_tweaks %}
+
+    {% for field in form %}
+    <div class="form-group {% if field.errors %}alert alert-danger{% endif %}">
+      {{ field.errors }}
+      {{ field.label_tag }}
+      {% render_field field class="form-control" %}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+{% endblock %}

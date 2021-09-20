@@ -1,0 +1,53 @@
+{% extends "Scrum/base.html" %} {% load static %}
+{% block style %}
+.card{
+margin-bottom: 10px;
+margin-left: 10px;
+margin-right: 10px;
+margin-top: 10px;
+transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform
+cubic-bezier(.155,1.105,.295,1.12);
+padding: 14px 80px 18px 36px;
+cursor: pointer;
+}
+.card-1{
+background-image: url(https://ionicframework.com/img/getting-started/ionic-native-card.png);
+background-repeat: no-repeat;
+background-position: right;
+background-size: 80px;
+}
+.card:hover{
+transform: scale(1.05);
+box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+{% endblock %}
+{% block content %}
+<br>
+<h1 align="center">{{project.Projectname}}</h1>
+<hr>
+<a href="{% url 'Add_Task' project.id %}" class="btn btn-danger ">Create Task</a>
+
+<form method="get">
+    {{Taskfilter.form}}
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>
+
+
+<hr>
+{% if project.scurmboard_set.all %}
+    <div class="class_card row">
+        {% for tasks in task %}
+                <div class="card card-1"  style="width: 18rem;"   onclick="window.location.href='http://127.0.0.1:8000/DetailTask/{{ tasks.id }}' ">
+                    <h5 class="card-title" align="center">{{ tasks.Task_name }}</h5>
+                    <h6 style="color:Black" align="center">{{ tasks.Task_Description|striptags|truncatechars:30 }}</h6>
+                    <h6 style="color:Black" align="center">{{ tasks.Dead_line }}</h6>
+                    <h6 style="color:Black" align="center">{{ tasks.user }}</h6>
+                </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <img src="{% static 'images/undraw_Scrum_board_re_wk7v.svg' %}" class="img-fluid"
+        style="height: 250px; width: 100%;">
+{% endif %}
+{% endblock %}
